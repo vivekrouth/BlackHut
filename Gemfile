@@ -27,6 +27,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'client_side_validations'
 
+gem 'mysql2', '~> 0.4.5'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

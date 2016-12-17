@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20161217083037) do
     t.decimal  "volatility",              precision: 10, scale: 2
     t.decimal  "interest_rate",           precision: 10, scale: 2
     t.integer  "time_period",   limit: 8
-    t.integer  "parity_type",                                      default: 0
+    t.integer  "parity_type",   limit: 4,                          default: 0
     t.datetime "created_at",                                                   null: false
     t.datetime "updated_at",                                                   null: false
   end
