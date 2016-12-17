@@ -1,1 +1,37 @@
-<h1>I'm redirected by root</h1>
+<div class="intro-header" style="background-image: url('/assets/bsm_person.png');min-height: 700px;margin-top: 85px;">
+</div>
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="color:#333;">
+            	<h2 class="section-heading" style="color: #f26522;">The Black Scholes Model</h2>
+
+            	<p>The Black-Scholes model for calculating the premium of an option was introduced in 1973 in a paper entitled, "The Pricing of Options and Corporate Liabilities" published in the Journal of Political Economy. The formula, developed by three economists – Fischer Black, Myron Scholes and Robert Merton – is perhaps the world's most well-known options pricing model. Black passed away two years before Scholes and Merton were awarded the 1997 Nobel Prize in Economics for their work in finding a new method to determine the value of derivatives (the Nobel Prize is not given posthumously; however, the Nobel committee acknowledged Black's role in the Black-Scholes model).</p>
+				<p>The Black-Scholes model is used to calculate the theoretical price of European put and call options, ignoring any dividends paid during the option's lifetime. While the original Black-Scholes model did not take into consideration the effects of dividends paid during the life of the option, the model can be adapted to account for dividends by determining the ex-dividend date value of the underlying stock.</p>
+				<p>&nbsp;</p>
+                <h2 class="section-heading" style="color: #f26522;">Black-Scholes Inputs (Parameters)</h2>
+                <p>There are 6 basic inputs (parameters) to set when pricing an option using the Black-Scholes model. They are the following: <i>Underlying price</i>, <i>Strike price</i>, <i>Time to expiration</i>, <i>Volatility</i>, <i>Risk-free interest rate</i>, and <i>Dividend yield</i></p>
+                <blockquote>
+                <p>Underlying Price Input</p>
+				<p>Underlying price is the price at which the underlying security is trading on the market at the moment you are doing the option pricing. For example, if you are pricing an option on J.P. Morgan (JPM) stock and the stock is trading at 44.50 at the time you are doing the pricing, you enter 44.50 as underlying price.</p>
+				<p>&nbsp;</p>
+				<p>Strike Price Input</p>
+				<p>Strike price, also called exercise price, is the price at which you would buy (or sell) the underlying security if you choose to exercise the call (or put) option. It is one of the fixed specifications of each particular option contract and it does not change during the life of the option.</p>
+				<p>&nbsp;</p>
+				<p>Time to Expiration Input</p>
+				<p>Time to expiration is the time between the moment you are doing the pricing and the expiration of the option. Like strike price, expiration date is a fixed characteristic of every individual option. The expiration date does not change during the life of the option, but as the time passes, the time left to expiration (the number that enters the Black-Scholes model as an input) decreases. Time to expiration enter the calculations as percentage of year, but most software (including the Macroption Black-Scholes Calculator) enables you to enter today’s date and expiration date (and time if you need to be more precise) and converts it to percentage of year automatically. You may also decide if you want to measure time to expiration in calendar days or trading days.</p>
+				<p>&nbsp;</p>
+				<p>Volatility Input</p>
+				<p>The volatility input, measured in percent per year, is how much you generally expect the underlying security to move during the life of the option. For people new to option pricing, the volatility concept may be a bit complicated at first, before you fully understand what the number really represents (standard deviation of returns). If you are not much familiar with volatility, hopefully you will find answers to your questions on the main volatility page.</p>
+				<p>&nbsp;</p>
+				<p>Risk-Free Interest Rate Input</p>
+				<p>Like volatility, risk free interest rate is also measured in percent per year. For a particular trader it should be the rate at which you can deposit or borrow cash over the life of the option (the interest rate tenor should match the time to expiration). The interest rate input is not that important when interest rates are low (like now), but it can get very important when they are high (the importance depends on a particular option’s strike price, type, and time to expiration).</p>
+				<p>&nbsp;</p>
+				<p>Dividend Yield Input</p>
+				<p>Dividend yield was not among the inputs in the original version of the Black-Scholes model, but was added soon as an expansion.</p>
+				</blockquote>
+				<p>&nbsp;</p>
+            </div>
+        </div>
+    </div>
+</article>

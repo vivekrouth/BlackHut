@@ -2,13 +2,64 @@
 <html>
 <head>
   <title>BlackHut</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "blackhut.css" %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<div class="wrapper register" style="opacity: 1;">
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container"> 
+					<a class="brand" href="/">
+						<img src="/assets/stock.png" width="230" height="67" alt="Daniella Draper Logo">
+					</a>
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="nav-collapse collapse" style="display: block;">
+						<ul class="nav pull-right">
+							<li><a href="/">Home</a></li>
+							<li><a href="/financial_options/new">New Bid</a></li>
+							<li><a href="/financial_options">All Bids</a></li>
+							<li><a href="/financial_options">Graphs</a></li>
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div> <!-- /.container -->
+			</div><!-- /.navbar-inner -->
+		</div>
+		<%= yield %>
+	</div>
+	<footer>
+		<a href="/" class="text-link"></a>
+	</footer>
+	<footer class="footer">
+		<div class="row-fluid border-bottom">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span12">
+						<ul class="inline">
+							<li>More Articles on Black Scholes Model</li>
+							<li><a href="https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_model">Wiki Page</a></li>
+							<li><a href="http://www.espenhaug.com/black_scholes.html">Code Implementations</a></li>
+							<li><a href="http://www.macroption.com/black-scholes-inputs/">Inputs for New Option</a></li>
+							<li><a href="http://www.macroption.com/black-scholes-calculator/#bscs-guide">Graphical Representations</a></li>
+							<li><a href="http://www.procognis.com/FAS123r/blackscholes-faq.php">FAQs</a></li>
+						</ul>
+					</div><!-- /.span8-->
+				</div><!-- /.span4 -->
+			</div><!-- /.container-->
+			<div class="half-centered">
+				<a class="hover-img" href="/">
+				</a>
+			</div><!-- /.span6-->
+			<hr>
+		</div><!-- /.row-fluid -->
+	</footer>
 </body>
 </html>

@@ -1,24 +1,41 @@
-<h1>Listing Financial Options</h1>
- 
-<table>
-  <tr>
-    <th>Strike Price</th>
-    <th>Stock Price</th>
-    <th>Time (Days)</th>
-    <th>Volatility</th>
-    <th>Interest Rate</th>
-    <th>Parity Type</th>
-  </tr>
- 
-  <% @financial_options.each do |fin| %>
-    <tr>
-      <td><%= fin.strike_price %></td>
-      <td><%= fin.stock_price %></td>
-      <td><%= fin.time_period %></td>
-      <td><%= fin.volatility %></td>
-      <td><%= fin.interest_rate %></td>
-      <td><%= fin.parity_type %></td>
-      <td><%= link_to 'Show', financial_option_path(fin) %></td>
-    </tr>
-  <% end %>
-</table>
+<section id="login-register" class="main-content">
+  <div class="container">
+    <div class="row-fluid noborder">
+      <div class="span12">
+        <div id="login-top" class="padder">
+          <div class="half-centered">
+            <h3>Historical Data of different Financial Options</h3>
+          </div>
+          <div class="table-responsive"> 
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                        <th>Strike Price</th>
+                        <th>Stock Price</th>
+                        <th>Time (Days)</th>
+                        <th>Volatility</th>
+                        <th>Interest Rate</th>
+                        <th>Parity Type</th>
+                        <th>Link</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <% @financial_options.each do |fin| %>
+                      <tr>
+                        <td><%= fin.strike_price %></td>
+                        <td><%= fin.stock_price %></td>
+                        <td><%= fin.time_period %></td>
+                        <td><%= fin.volatility %></td>
+                        <td><%= fin.interest_rate %></td>
+                        <td><%= fin.parity_type %></td>
+                        <td><%= link_to 'Show', financial_option_path(fin) %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

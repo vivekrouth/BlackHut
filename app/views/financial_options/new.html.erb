@@ -1,42 +1,121 @@
-<%= form_for :financial_option, url: financial_options_path do |f| %>
-  <p>
-    <%= f.label :strike_price %><br>
-    <%= f.number_field :strike_price, class: :number_field, :step=>"0.01"  %>
-  </p>
+<section id="login-register" class="main-content">
+  <div class="container">
+    <div class="row-fluid noborder">
+      <div class="span12">
+        <div id="login-top" class="padder">
+          <div class="half-centered">
+            <h3>Calculate New Option</h3>
+            <%= form_for :financial_option, url: financial_options_path do |f| %>
 
-  <p>
-    <%= f.label :stock_price %><br>
-    <%= f.number_field :stock_price, class: :number_field, :step=>"0.01"  %>
-  </p>
-  
-  <p>
-    <%= f.label :time_period %><br>
-    <%= f.number_field :time_period %>
-  </p>
+              <div class="control-group">
+                <%= f.label :strike_price, "Strike Price*", class: "control-label" %>
+                <div class="controls">
+                  <%= f.number_field :strike_price, min: 0, class: :number_field, :step=>"0.01"  %>
+                </div>
+              </div>
 
-  <p>
-    <%= f.label :volatility %><br>
-    <%= f.number_field :volatility, class: :number_field, :step=>"0.01"  %>
-  </p>
+              <div class="control-group">
+                <%= f.label :stock_price, "Stock Price*", class: "control-label" %>
+                <div class="controls">
+                  <%= f.number_field :stock_price, min: 0, class: :number_field, :step=>"0.01"  %>
+                </div>
+              </div>
 
-  <p>
-    <%= f.label :interest_rate %><br>
-    <%= f.number_field :interest_rate, class: :number_field, :step=>"0.01"  %>
-  </p>
-  
-  <p>
-    <%= f.label :call %>&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :parity_type, {checked: true, class: :checkBox}, true, true %>
-  </p>
+              <div class="control-group">
+                <%= f.label :time_period, "Time (Days)*", class: "control-label" %>
+                <div class="controls">
+                  <%= f.number_field :time_period, min: 0, class: :number_field, :step=>"1"  %>
+                </div>
+              </div>
 
-  <p>
-    <%= f.label :put %>&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :parity_type, {class: :checkBox}, true, false %>
-  </p>
+              <div class="control-group">
+                <%= f.label :volatility, "Volatility*", class: "control-label" %>
+                <div class="controls">
+                  <%= f.number_field :volatility, min: 0, class: :number_field, :step=>"0.01"  %>
+                </div>
+              </div>
 
-  <p>
-    <%= f.label :both %>&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :parity_type, {class: :checkBox}, true, false %>
-  </p>
+              <div class="control-group">
+                <%= f.label :interest_rate, "Risk free Interest Rate*", class: "control-label" %>
+                <div class="controls">
+                  <%= f.number_field :interest_rate, min: 0, class: :number_field, :step=>"0.01"  %>
+                </div>
+              </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+              <div class="control-group checkBoxLabDiv mrg35tp">
+                <%= f.label :parity_type, "Call Parity*", class: "control-label checkBoxLab" %>
+                <div class="controls">
+                  <%= f.radio_button :parity_type, 0, checked: true, class: :checkBox, id: :call_parity %>
+                </div>
+              </div>
+
+              <div class="control-group checkBoxLabDiv">
+                <%= f.label :parity_type, "Put Parity*", class: "control-label checkBoxLab" %>
+                <div class="controls">
+                  <%= f.radio_button :parity_type, 1, checked: false, class: :checkBox, id: :put_parity %>
+                </div>
+              </div>
+
+              <div class="control-group checkBoxLabDiv mrg20negbt">
+                <%= f.label :parity_type, "Both*", class: "control-label checkBoxLab" %>
+                <div class="controls">
+                  <%= f.radio_button :parity_type, 2, checked: false, class: :checkBox, id: :both_parity %>
+                </div>
+              </div>
+              <div class="control-group">
+                <%= f.submit "Create Option", class: "btn btn-primary", id: "newOptionId" %>
+              </div>
+            <% end %>
+          </div><!--/.half-centered -->
+        </div><!--/.padder -->
+      </div><!--/.span12 -->
+    </div><!--/.row-fluid -->
+  </div> <!--/.container -->
+</section>
+<script type="text/javascript">
+
+  function formValidation() {
+    var flag = 0;
+    var strike = parseFloat($("#financial_option_strike_price").val());
+    var stock = parseFloat($("#financial_option_stock_price").val());
+    var timeDays = parseInt($("#financial_option_time_period").val());
+    var volatility = parseFloat($("#financial_option_volatility").val());
+    var rate = parseFloat($("#financial_option_interest_rate").val());
+    var type = 0;
+    $(".checkBox").each(function() {
+
+      if($(this).attr("checked") == "checked")
+        type = 1;
+    });
+
+    if(strike && stock && timeDays && volatility && rate && type) {
+      flag = 0;
+    } else {
+      flag = 1;
+    }
+    return flag;
+  }
+
+  $("#newOptionId").click(function() {
+
+    var flag = 0;
+    flag = formValidation();
+    if(flag == 1)
+    {
+      alert("check your inputs");
+      return false;
+    }
+
+    var strike = $("#financial_option_strike_price").val();
+    var stock = $("#financial_option_stock_price").val();
+    var timeDays = $("#financial_option_time_period").val();
+    var volatility = $("#financial_option_volatility").val();
+    var rate = $("#financial_option_interest_rate").val();
+    var parityType = 0;
+    $(".checkBox").each(function() {
+
+      if($(this).attr("checked") == "checked")
+        parityType = $(this).val();
+    });
+  });
+</script>
