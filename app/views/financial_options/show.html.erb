@@ -1,29 +1,37 @@
-<p>
-  <strong>Strike Price : </strong>
-  <%= @financial_option.strike_price %>
-</p>
- 
-<p>
-  <strong>Stock Price : </strong>
-  <%= @financial_option.stock_price %>
-</p>
-
-<p>
-  <strong>Time (Days) : </strong>
-  <%= @financial_option.time_period %>
-</p>
- 
-<p>
-  <strong>Volatility : </strong>
-  <%= @financial_option.volatility %>
-</p>
-
-<p>
-  <strong>Interest Rate : </strong>
-  <%= @financial_option.interest_rate %>
-</p>
- 
-<p>
-  <strong>Parity Type : </strong>
-  <%= @financial_option.parity_type %>
-</p>
+<section id="login-register" class="main-content">
+  <div class="container">
+    <div class="row-fluid noborder">
+      <div class="span12">
+        <div id="login-top" class="padder">
+          <div class="half-centered">
+            <h3>Historical Data of different Financial Options</h3>
+          </div>
+          <div class="table-responsive"> 
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                        <th>Strike Price</th>
+                        <th>Stock Price</th>
+                        <th>Time (Days)</th>
+                        <th>Volatility</th>
+                        <th>Interest Rate</th>
+                        <th>Parity Type</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><%= @financial_option.strike_price %></td>
+                      <td><%= @financial_option.stock_price %></td>
+                      <td><%= @financial_option.time_period %></td>
+                      <td><%= @financial_option.volatility %></td>
+                      <td><%= @financial_option.interest_rate %></td>
+                      <td><%= @financial_option.parity_type %></td>
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
