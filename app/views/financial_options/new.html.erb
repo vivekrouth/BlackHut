@@ -1,0 +1,42 @@
+<%= form_for :financial_option, url: financial_options_path do |f| %>
+  <p>
+    <%= f.label :strike_price %><br>
+    <%= f.number_field :strike_price, class: :number_field, :step=>"0.01"  %>
+  </p>
+
+  <p>
+    <%= f.label :stock_price %><br>
+    <%= f.number_field :stock_price, class: :number_field, :step=>"0.01"  %>
+  </p>
+  
+  <p>
+    <%= f.label :time_period %><br>
+    <%= f.number_field :time_period %>
+  </p>
+
+  <p>
+    <%= f.label :volatility %><br>
+    <%= f.number_field :volatility, class: :number_field, :step=>"0.01"  %>
+  </p>
+
+  <p>
+    <%= f.label :interest_rate %><br>
+    <%= f.number_field :interest_rate, class: :number_field, :step=>"0.01"  %>
+  </p>
+  
+  <p>
+    <%= f.label :call %>&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :parity_type, {checked: true, class: :checkBox}, true, true %>
+  </p>
+
+  <p>
+    <%= f.label :put %>&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :parity_type, {class: :checkBox}, true, false %>
+  </p>
+
+  <p>
+    <%= f.label :both %>&nbsp;&nbsp;&nbsp;&nbsp;<%= f.check_box :parity_type, {class: :checkBox}, true, false %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

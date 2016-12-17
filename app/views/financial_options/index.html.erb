@@ -1,0 +1,24 @@
+<h1>Listing Financial Options</h1>
+ 
+<table>
+  <tr>
+    <th>Strike Price</th>
+    <th>Stock Price</th>
+    <th>Time (Days)</th>
+    <th>Volatility</th>
+    <th>Interest Rate</th>
+    <th>Parity Type</th>
+  </tr>
+ 
+  <% @financial_options.each do |fin| %>
+    <tr>
+      <td><%= fin.strike_price %></td>
+      <td><%= fin.stock_price %></td>
+      <td><%= fin.time_period %></td>
+      <td><%= fin.volatility %></td>
+      <td><%= fin.interest_rate %></td>
+      <td><%= fin.parity_type %></td>
+      <td><%= link_to 'Show', financial_option_path(fin) %></td>
+    </tr>
+  <% end %>
+</table>
