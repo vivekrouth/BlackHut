@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
-  resources :financial_options
+  resources :financial_options do
+    collection do
+      get :bsm_pricing_value
+      get :pricing_graphs
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

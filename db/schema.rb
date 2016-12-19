@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217083037) do
+ActiveRecord::Schema.define(version: 20161217224303) do
 
   create_table "financial_options", force: :cascade do |t|
     t.decimal  "strike_price",            precision: 10, scale: 2
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20161217083037) do
     t.integer  "parity_type",   limit: 4,                          default: 0
     t.datetime "created_at",                                                   null: false
     t.datetime "updated_at",                                                   null: false
+    t.decimal  "pricing",                 precision: 10, scale: 2
   end
 
 end

@@ -49,19 +49,13 @@
                 </div>
               </div>
 
-              <div class="control-group checkBoxLabDiv">
+              <div class="control-group checkBoxLabDiv mrg20negbt">
                 <%= f.label :parity_type, "Put Parity*", class: "control-label checkBoxLab" %>
                 <div class="controls">
                   <%= f.radio_button :parity_type, 1, checked: false, class: :checkBox, id: :put_parity %>
                 </div>
               </div>
 
-              <div class="control-group checkBoxLabDiv mrg20negbt">
-                <%= f.label :parity_type, "Both*", class: "control-label checkBoxLab" %>
-                <div class="controls">
-                  <%= f.radio_button :parity_type, 2, checked: false, class: :checkBox, id: :both_parity %>
-                </div>
-              </div>
               <div class="control-group">
                 <%= f.submit "Create Option", class: "btn btn-primary", id: "newOptionId" %>
               </div>

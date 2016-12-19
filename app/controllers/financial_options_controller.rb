@@ -2,6 +2,7 @@ class FinancialOptionsController < ApplicationController
 	
 	def index
 		@financial_options = FinancialOption.all
+		# @financial_options_count = FinancialOption.count
 	end
 
 	def new
@@ -15,6 +16,14 @@ class FinancialOptionsController < ApplicationController
 	
 	def show
 		@financial_option = FinancialOption.find(params[:id])
+	end
+
+	def pricing_graphs
+		
+	end
+
+	def bsm_pricing_value
+		
 	end
 
 	private
