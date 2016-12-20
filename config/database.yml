@@ -7,50 +7,32 @@
 default: &default
   adapter: postgresql
   encoding: utf8
-  host: localhost
   pool: 5
-  username: vivek
-  password: vivek
-  # cast: false
+  username: pricing
+  password: pricing
 
 development:
   adapter: postgresql
-  encoding: utf8
-  database: blackhut
+  encoding: unicode
+  database: blackhut_dev
   host: localhost
   pool: 5
-  username: vivek
-  password: vivek
+  username: pricing
+  password: pricing
 
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: blackhut_test
+  host: localhost
+  pool: 5
+  username: pricing
+  password: pricing
 
-# development:
-#   <<: *default
-#   database: gold
-
-# test:
-#   <<: *default
-#   database: referhires_test
-
-# default: &default
-#   adapter: mysql2
-#   encoding: utf8
-#   pool: 5
-#   username: root
-#   password: vivek
-#   cast: false
-
+production:
+  <<: *default
+  database: blackhut_production
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  adapter: postgresql
-  database: blackhut1
-  pool: 5
-  timeout: 10000
-
-production:
-  adapter: postgresql
-  database: blackhut
-  pool: 5
-  timeout: 10000
