@@ -5,6 +5,7 @@ class ChangeColumnLimitForDecimals < ActiveRecord::Migration
   	change_column :financial_options, :volatility, :decimal, :precision => 10, :scale => 2
   	change_column :financial_options, :interest_rate, :decimal, :precision => 10, :scale => 2
   	change_column :financial_options, :time_period, :integer, :limit => 8
-  	change_column :financial_options, :parity_type, :integer, :default => 0
+  	# change_column :financial_options, :parity_type, :integer, :default => 0
+  	change_column :financial_options, :parity_type, 'integer USING CAST(parity_type AS integer)', :default => 0
   end
 end

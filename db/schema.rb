@@ -13,13 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20161217224303) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "financial_options", force: :cascade do |t|
     t.decimal  "strike_price",            precision: 10, scale: 2
     t.decimal  "stock_price",             precision: 10, scale: 2
     t.decimal  "volatility",              precision: 10, scale: 2
     t.decimal  "interest_rate",           precision: 10, scale: 2
     t.integer  "time_period",   limit: 8
-    t.integer  "parity_type",   limit: 4,                          default: 0
+    t.integer  "parity_type",                                      default: 0
     t.datetime "created_at",                                                   null: false
     t.datetime "updated_at",                                                   null: false
     t.decimal  "pricing",                 precision: 10, scale: 2

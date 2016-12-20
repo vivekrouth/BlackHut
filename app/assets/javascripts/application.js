@@ -16,3 +16,5 @@
 //= require_tree .
 //= require bootstrap-sprockets
 //= require rails.validations
+//= require highstock
+//= require highstock/highcharts-more

@@ -29,6 +29,8 @@ gem 'client_side_validations'
 
 gem 'mysql2', '~> 0.4.5'
 
+gem 'highstock-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -37,6 +39,11 @@ gem 'mysql2', '~> 0.4.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :production do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pg'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

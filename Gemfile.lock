@@ -63,6 +63,8 @@ GEM
     execjs (2.7.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    highstock-rails (2.1.10)
+      railties (>= 3.1)
     i18n (0.7.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -87,6 +89,7 @@ GEM
     mysql2 (0.4.5)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
+    pg (0.19.0)
     rack (1.6.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -161,9 +164,11 @@ DEPENDENCIES
   byebug
   client_side_validations
   coffee-rails (~> 4.1.0)
+  highstock-rails
   jbuilder (~> 2.0)
   jquery-rails
   mysql2 (~> 0.4.5)
+  pg
   rails (= 4.2.6)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
