@@ -146,6 +146,9 @@
       if(min >= max) {
         flag = 2;
       }
+      if(step > max || step < min) {
+        flag = 3;
+      }
     } else {
       flag = 1;
     }
@@ -162,6 +165,8 @@
         str = "Please type your inputs properly...!!!";
       } else if(flag == 2) {
         str = "Minimum range should be less than Maximum range...!!!";
+      } else if(flag == 3) {
+        str = "Checkout your interval value...!!!";
       }
       $("#error_text").text(str);
       $("#error_div").show();
