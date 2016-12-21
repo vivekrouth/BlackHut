@@ -14,6 +14,16 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :financial_options do
+        collection do
+          get :graph_values
+        end
+      end
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
