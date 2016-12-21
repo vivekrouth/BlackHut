@@ -165,6 +165,49 @@
       $("#error_div").hide();
     }
     
+    var min = $("#min_range").val();
+    var max = $("#max_range").val();
+    var step = $("#step_interval").val();
+    if(temp == 1) {
+      min = parseFloat(min);
+      max = parseFloat(max);
+      step = parseFloat(step);
+    } else if(temp == 2) {
+      min = parseInt(min);
+      max = parseInt(max);
+      step = parseInt(step);
+    }
+
+    var strike_price_id = parseFloat($("#strike_price_id").val());
+    var stock_price_id = parseFloat($("#stock_price_id").val());
+    var time_period_id = parseInt($("#time_period_id").val());
+    var volatility_id = parseFloat($("#volatility_id").val());
+    var interest_rate_id = parseFloat($("#interest_rate_id").val());
+
+    var strike_price_radio = $("#strike_price_radio").is(':checked');
+    var stock_price_radio = $("#stock_price_radio").is(':checked');
+    var time_period_radio = $("#time_period_radio").is(':checked');
+    var volatility_radio = $("#volatility_radio").is(':checked');
+    var interest_rate_radio = $("#interest_rate_radio").is(':checked');
+    if(strike_price_radio) {
+      graphAnalysis(min, max, step, stock_price_id, time_period_id, volatility_id, interest_rate_id);
+    } else if(stock_price_radio) {
+      graphAnalysis(min, max, step, strike_price_id, time_period_id, volatility_id, interest_rate_id);
+    } else if(time_period_radio) {
+      graphAnalysis(min, max, step, strike_price_id, stock_price_id, volatility_id, interest_rate_id);
+    } else if(volatility_radio) {
+      graphAnalysis(min, max, step, strike_price_id, stock_price_id, time_period_id, interest_rate_id);
+    } else if(interest_rate_radio) {
+      graphAnalysis(min, max, step, strike_price_id, stock_price_id, time_period_id, volatility_id);
+    }
+  }
+
+  function graphAnalysis(min, max, step, val1, val2, val3, val4) {
+    var temp = (max-min);
+    var num = Math.floor(temp/step);
+    for(var i=min; i<=max; i += step) {
+      console.log(i);
+    }
   }
 
 </script>
