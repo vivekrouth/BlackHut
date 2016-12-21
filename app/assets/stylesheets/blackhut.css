@@ -4934,3 +4934,27 @@ table.size-guide th {
     -o-background-size: cover;
     margin-bottom: 50px;
 }
+.graph {
+  color:#333;
+}
+.mrg0tp {
+  margin-top: 0px !important;
+}
+.mrg25tp {
+  margin-top: 25px !important;
+}
+.radio_div {
+  margin-top: 25px;
+  width: 57.5%;
+}
+.reset_btn {
+  padding: 3px 12px;
+  background: none;
+  border: none;
+  margin-left: 0px !important;
+  text-decoration: underline;
+}
+.graph_btn {
+  margin-left: 0px !important;
+  margin-top: 20px;
+}

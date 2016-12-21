@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row-fluid noborder">
       <div class="span12">
-        <div id="login-top" class="padder">
+        <div id="login-top" class="padder" style="border-bottom:none;">
           <div class="half-centered">
             <h3>Historical Data of different Financial Options</h3>
           </div>
@@ -36,4 +36,135 @@
       </div>
     </div>
   </div>
+  <div class="container">
+    <p style="margin-top: -60px;">&nbsp;</p>
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <center><a data-toggle="collapse" href="#collapse1" class="graph">Graphical view for a deep analysis of the given input by you</a></center>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="">
+              <p>You can vary one of the inputs at a time with keeping others constant:</p>
+              <div>
+                <form style="width:80%; display: inline;">
+                  <label class="radio-inline"><input class="mrg0tp" onclick="showRange($(this), 1);" id="strike_price_radio" type="radio" name="optradio">STRIKE PRICE</label>
+                  <label class="radio-inline"><input class="mrg0tp" onclick="showRange($(this), 1);" id="stock_price_radio" type="radio" name="optradio">STOCK PRICE</label>
+                  <label class="radio-inline"><input class="mrg0tp" onclick="showRange($(this), 2);" id="time_period_radio" type="radio" name="optradio">TIME (DAYS)</label>
+                  <label class="radio-inline"><input class="mrg0tp" onclick="showRange($(this), 1);" id="volatility_radio" type="radio" name="optradio">VOLATILITY</label>
+                  <label class="radio-inline"><input class="mrg0tp" onclick="showRange($(this), 1);" id="interest_rate_radio" type="radio" name="optradio">INTEREST RATE</label>
+                </form>
+                <button class="btn reset_btn" id="deselect">Reset</button>
+              </div>
+              <div class="radio_div" id="min_max_step" style="display: none;">
+                <form>
+                  <div class="input-group">
+                    <span class="input-group-addon">Min-val</span>
+                    <input type="number" step="" min="0" class="form-control" id="min_range">
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">Max-val</span>
+                    <input type="number" step="" min="0" class="form-control" id="max_range">
+                  </div>
+                  <br>
+                  <div class="input-group">
+                    <span class="input-group-addon">Interval-Step</span>
+                    <input type="number" step="" min="0" class="form-control" id="step_interval">
+                  </div>
+                </form>
+                <div class="graph_btn" id="error_div" style="display: none;"><span class="label label-danger" id="error_text"></span></div>
+                <div class="graph_btn">
+                  <button type="button" class="btn reset_btn" style="padding-left: 0px !important;" onclick="generateGraph();">Generate graph</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+<input type="hidden" name="" value="<%= @financial_option.strike_price %>" id="strike_price_id">
+<input type="hidden" name="" value="<%= @financial_option.stock_price %>" id="stock_price_id">
+<input type="hidden" name="" value="<%= @financial_option.time_period %>" id="time_period_id">
+<input type="hidden" name="" value="<%= @financial_option.volatility %>" id="volatility_id">
+<input type="hidden" name="" value="<%= @financial_option.interest_rate %>" id="interest_rate_id">
+<input type="hidden" name="" value="<%= @financial_option.parity_type %>" id="parity_type_id">
+<script type="text/javascript">
+
+  var temp = 0;
+  function showRange(control, type) {
+
+    temp = type;
+    $("#min_range").val("");
+    $("#max_range").val("");
+    $("#step_interval").val("");
+    if(type == 1) {
+      $("#min_range").attr("step", "0.01");
+      $("#max_range").attr("step", "0.01");
+      $("#step_interval").attr("step", "0.01");
+      $("#step_interval").attr("min", "0.01");
+    } else {
+      $("#min_range").attr("step", "1");
+      $("#max_range").attr("step", "1");
+      $("#step_interval").attr("step", "1");
+      $("#step_interval").attr("min", "1");
+    }
+    $("#min_max_step").show();
+  }
+
+  $("#deselect").on("click",function() {
+
+    $('input:radio[name="optradio"]').attr("checked", false);
+    $("#min_max_step").hide();
+  });
+
+  function graphValidation() {
+    var flag = 0;
+    var min = $("#min_range").val();
+    var max = $("#max_range").val();
+    var step = $("#step_interval").val();
+    if(min && max && step) {
+      if(temp == 1) {
+        min = parseFloat(min);
+        max = parseFloat(max);
+        step = parseFloat(step);
+      } else if(temp == 2) {
+        min = parseInt(min);
+        max = parseInt(max);
+        step = parseInt(step);
+      }
+      if(min >= max) {
+        flag = 2;
+      }
+    } else {
+      flag = 1;
+    }
+    
+    return flag;
+  }
+
+  function generateGraph() {
+    var flag = 0;
+    flag = graphValidation();
+    if(flag > 0) {
+      var str = "";
+      if(flag == 1) {
+        str = "Please type your inputs properly...!!!";
+      } else if(flag == 2) {
+        str = "Minimum range should be less than Maximum range...!!!";
+      }
+      $("#error_text").text(str);
+      $("#error_div").show();
+    } else {
+      $("#error_text").text("");
+      $("#error_div").hide();
+    }
+    
+  }
+
+</script>
