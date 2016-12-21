@@ -80,7 +80,7 @@
                 <div class="graph_btn">
                   <button type="button" class="btn reset_btn" style="padding-left: 0px !important;" onclick="generateGraph();">Generate graph</button>
                 </div>
-                <div id="container_graph" style="height: 400px; min-width: 310px"></div>
+                <div id="container_graph" style="height: 400px; min-width: 600px; display: none;"></div>
               </div>
             </div>
           </div>
@@ -116,12 +116,16 @@
       $("#step_interval").attr("min", "1");
     }
     $("#min_max_step").show();
+    $("#container_graph").empty();
+    $("#container_graph").hide();
   }
 
   $("#deselect").on("click",function() {
 
     $('input:radio[name="optradio"]').attr("checked", false);
     $("#min_max_step").hide();
+    $("#container_graph").empty();
+    $("#container_graph").hide();
   });
 
   function graphValidation() {
@@ -161,6 +165,7 @@
       }
       $("#error_text").text(str);
       $("#error_div").show();
+      return false;
     } else {
       $("#error_text").text("");
       $("#error_div").hide();
@@ -184,6 +189,7 @@
     var time_period_id = parseInt($("#time_period_id").val());
     var volatility_id = parseFloat($("#volatility_id").val());
     var interest_rate_id = parseFloat($("#interest_rate_id").val());
+    var parity_type_id = parseInt($("#parity_type_id").val());
 
     var strike_price_radio = $("#strike_price_radio").is(':checked');
     var stock_price_radio = $("#stock_price_radio").is(':checked');
@@ -191,19 +197,19 @@
     var volatility_radio = $("#volatility_radio").is(':checked');
     var interest_rate_radio = $("#interest_rate_radio").is(':checked');
     if(strike_price_radio) {
-      graphAnalysis(min, max, step, stock_price_id, time_period_id, volatility_id, interest_rate_id, 1);
+      graphAnalysis(min, max, step, stock_price_id, time_period_id, volatility_id, interest_rate_id, parity_type_id, 1);
     } else if(stock_price_radio) {
-      graphAnalysis(min, max, step, strike_price_id, time_period_id, volatility_id, interest_rate_id, 2);
+      graphAnalysis(min, max, step, strike_price_id, time_period_id, volatility_id, interest_rate_id, parity_type_id, 2);
     } else if(time_period_radio) {
-      graphAnalysis(min, max, step, strike_price_id, stock_price_id, volatility_id, interest_rate_id, 3);
+      graphAnalysis(min, max, step, strike_price_id, stock_price_id, volatility_id, interest_rate_id, parity_type_id, 3);
     } else if(volatility_radio) {
-      graphAnalysis(min, max, step, strike_price_id, stock_price_id, time_period_id, interest_rate_id, 4);
+      graphAnalysis(min, max, step, strike_price_id, stock_price_id, time_period_id, interest_rate_id, parity_type_id, 4);
     } else if(interest_rate_radio) {
-      graphAnalysis(min, max, step, strike_price_id, stock_price_id, time_period_id, volatility_id, 5);
+      graphAnalysis(min, max, step, strike_price_id, stock_price_id, time_period_id, volatility_id, parity_type_id, 5);
     }
   }
 
-  function graphAnalysis(min, max, step, val1, val2, val3, val4, type) {
+  function graphAnalysis(min, max, step, val1, val2, val3, val4, val5, type) {
     var temp = (max-min);
     var num = Math.floor(temp/step);
     for(var i=min; i<=max; i += step) {
@@ -214,16 +220,17 @@
           'v2' : val2,
           'v3' : val3,
           'v4' : val4,
-          'v5' : i,
+          'v5' : val5,
+          'v6' : i,
         }
       }
       getData(formData, i);
     }
-    console.log(dataArr);
   }
 
-  var dataArr = [];
-  window.getData=function(formData, i)
+  var dataArr1 = [];
+  var dataArr2 = [];
+  function getData(formData, i)
   {
     $.ajax({
       method: "GET",
@@ -234,12 +241,54 @@
       success:function(data) {
         if(data['success'] == true) {
           var data = data['data'];
-          tempArr = [];
-          tempArr.push(i);
-          tempArr.push(data);
-          dataArr.push(tempArr);
+          dataArr1.push(i); // x-axis
+          dataArr2.push(data); // y-axis
+          draw(dataArr1, dataArr2);
         }
       }
+    });
+  }
+
+  function draw(arr1, arr2)
+  {
+    $("#container_graph").show();
+    $("#container_graph").empty();
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container_graph',
+            type: 'line',
+            zoomType: 'xy',
+        },
+        title: {
+            text: 'Black Scholes Model',
+        },
+        subtitle: {
+            text: "Graphical Analysis",
+        },
+        xAxis: {
+          categories: arr1,
+          title: {
+              text: 'Interval steps'
+          },
+          tickInterval: arr1[0],
+        },
+        legend: {
+            enabled: true,
+            layout: 'vertical',
+        },
+        yAxis: {
+          opposite:false,
+          title: {
+              text: 'Pricing based on different values'
+          },
+        },
+        credits: {
+          enabled: false
+        },
+        series: [{
+            name: 'Option Pricing',
+            data: arr2,
+        }]
     });
   }
 
